@@ -1,5 +1,7 @@
 black
-coveralls
+# coveralls # TODO: debugging
+coverage # TODO: debugging
+requests # TODO: debugging
 flake8
 isort
 pytest

@@ -43,6 +43,7 @@ def run_coveralls(repo_token, parallel=False):
     # for some reasons the "service_name" can be one or the other
     # (depending on where it's ran from?)
     service_names = ("github", "github-actions")
+    service_names = ("github-actions",)
     result = None
     for service_name in service_names:
         log.info(f"Trying submitting coverage with service_name: {service_name}...")
