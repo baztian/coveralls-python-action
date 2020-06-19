@@ -22,7 +22,6 @@ done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
 if [ "$COVERAGE_VERSION" != "" ]; then
-    pip install coverage==$COVERAGE_VERSION
+    pip install --upgrade coverage==$COVERAGE_VERSION
 fi
-pip install coveralls
 /src/entrypoint.py $@
