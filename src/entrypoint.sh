@@ -25,4 +25,4 @@ if [ "$COVERAGE_VERSION" != "" ]; then
     pip install coverage==$COVERAGE_VERSION
 fi
 pip install coveralls
-./src/entrypoint.py $@
+/src/entrypoint.py $@
