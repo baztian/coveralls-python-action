@@ -34,6 +34,11 @@ jobs:
       with:
         parallel: true
 
+    - name: With --coverage-version 4.5.4
+      uses: ./
+      with:
+        coverage-version: 4.5.4
+
   coveralls_finish:
     needs: test
     runs-on: ubuntu-latest

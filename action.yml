@@ -17,6 +17,8 @@ inputs:
   debug:
     description: 'Set to `true` to increase logger verbosity.'
     default: false
+  coverage-version:
+    description: 'Specify which version of the python coverage package you want to be used. Default: latest.'
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -29,3 +31,5 @@ runs:
     - ${{ inputs.parallel-finished }}
     - --debug
     - ${{ inputs.debug }}
+    - --coverage-version
+    - ${{ inputs.coverage-version }}
