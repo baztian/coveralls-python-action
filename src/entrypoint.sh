@@ -23,5 +23,11 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 if [ "$COVERAGE_VERSION" != "" ]; then
     pip install --upgrade coverage==$COVERAGE_VERSION
+    if [ "${COVERAGE_VERSION:0:1}" -lt "5" ]; then
+        printenv
+        echo "foo${GITHUB_WORKSPACE}bar"
+        sed -i "s#$GITHUB_WORKSPACE/##g" .coverage
+        cat .coverage
+    fi
 fi
 /src/entrypoint.py $@
