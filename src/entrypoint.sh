@@ -26,7 +26,8 @@ if [ "$COVERAGE_VERSION" != "" ]; then
     if [ "${COVERAGE_VERSION:0:1}" -lt "5" ]; then
         ( set -o posix ; set )
         echo "foo${RUNNER_WORKSPACE}/${GITHUB_REPOSITORY#*/}/bar"
-        sed -i "s,$RUNNER_WORKSPACE/${GITHUB_REPOSITORY#*/}/,,g" .coverage
+#        sed -i "s,$RUNNER_WORKSPACE/${GITHUB_REPOSITORY#*/}/,,g" .coverage
+        ls -la
         cat .coverage
     fi
 fi
