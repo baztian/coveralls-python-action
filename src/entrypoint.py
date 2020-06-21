@@ -142,7 +142,7 @@ def str_to_bool(value):
 def parse_args():
     parser = argparse.ArgumentParser(description="Greetings")
     parser.add_argument("--github-token", nargs=1, required=True)
-    parser.add_argument("--flag-name")
+    parser.add_argument("--flag-name", default=None)
     parser.add_argument(
         "--parallel", type=str_to_bool, nargs="?", const=True, default=False
     )
