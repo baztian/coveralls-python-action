@@ -8,6 +8,8 @@ inputs:
   github-token:
     description: 'The `GITHUB_TOKEN` or `COVERALLS_REPO_TOKEN`.'
     default: ${{ github.token }}
+  flag-name:
+    description: 'A descriptive id for this job. Specifically useful for matrix builds'
   parallel:
     description: 'Set to true if you are using parallel jobs, then use `parallel-finished: true` for the last action.'
     default: false
@@ -25,6 +27,8 @@ runs:
   args:
     - --github-token
     - ${{ inputs.github-token }}
+    - --flag-name
+    - ${{ inputs.flag-name }}
     - --parallel
     - ${{ inputs.parallel }}
     - --parallel-finished
