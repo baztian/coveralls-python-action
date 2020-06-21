@@ -34,6 +34,20 @@ jobs:
       with:
         parallel: true
 
+  test_coverage_version_4:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v1
+    - name: Downgrade coverage to make it compatible with the action's version in this test
+      run: pip install --upgrade coverage==4.5.4
+    - name: Generate some test data to upload
+      run: make test
+    - name: With --coverage-version 4.5.4
+      uses: ./
+      with:
+        coverage-version: 4.5.4
+
   coveralls_finish:
     needs: test
     runs-on: ubuntu-latest

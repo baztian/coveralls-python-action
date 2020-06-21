@@ -7,4 +7,4 @@ COPY src/ /src/
 RUN pip install coveralls
 
 # Code file to execute when the docker container starts up (`entrypoint.py`)
-ENTRYPOINT ["/src/entrypoint.py"]
+ENTRYPOINT ["/src/entrypoint.sh"]
