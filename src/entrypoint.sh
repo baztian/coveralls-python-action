@@ -25,8 +25,8 @@ if [ "$COVERAGE_VERSION" != "" ]; then
     pip install --upgrade coverage==$COVERAGE_VERSION
     if [ "${COVERAGE_VERSION:0:1}" -lt "5" ]; then
         ( set -o posix ; set )
-        echo "foo${RUNNER_WORKSPACE}/${GITHUB_REPOSITORY#*/}/bar"
-#        sed -i "s,$RUNNER_WORKSPACE/${GITHUB_REPOSITORY#*/}/,,g" .coverage
+        echo "foo${RUNNER_WORKSPACE}/${RUNNER_WORKSPACE##*/}/bar"
+        sed -i "s,$RUNNER_WORKSPACE/${RUNNER_WORKSPACE##*/},$GITHUB_WORKSPACE,g" .coverage
         ls -la
         cat .coverage
     fi
