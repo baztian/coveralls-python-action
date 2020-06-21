@@ -35,7 +35,7 @@ def patch_os_environ(repo_token, parallel):
     return mock.patch.dict("os.environ", environ)
 
 
-def run_coveralls(repo_token, parallel=False):
+def run_coveralls(repo_token, parallel=False, flag_name=None):
     """Submits job to coveralls."""
     # note that coveralls.io "service_name" can either be:
     # - "github-actions" (local development?)
@@ -47,7 +47,11 @@ def run_coveralls(repo_token, parallel=False):
     for service_name in service_names:
         log.info(f"Trying submitting coverage with service_name: {service_name}...")
         with patch_os_environ(repo_token, parallel):
-            coveralls = Coveralls(service_name=service_name)
+            coverall_kwargs = dict()
+            if flag_name:
+                log.info(f"Using flag_name: {flag_name}...")
+                coverall_kwargs['service_job_id'] = flag_name
+            coveralls = Coveralls(service_name=service_name, **coverall_kwargs)
             try:
                 result = coveralls.wear()
                 break
@@ -138,6 +142,7 @@ def str_to_bool(value):
 def parse_args():
     parser = argparse.ArgumentParser(description="Greetings")
     parser.add_argument("--github-token", nargs=1, required=True)
+    parser.add_argument("--flag-name")
     parser.add_argument(
         "--parallel", type=str_to_bool, nargs="?", const=True, default=False
     )
@@ -160,6 +165,7 @@ def main():
     args = parse_args()
     debug = args.debug
     repo_token = args.github_token[0]
+    flag_name = args.flag_name
     parallel = args.parallel
     parallel_finished = args.parallel_finished
     set_log_level(debug)
@@ -167,7 +173,7 @@ def main():
     if parallel_finished:
         post_webhook(repo_token)
     else:
-        run_coveralls(repo_token, parallel)
+        run_coveralls(repo_token, parallel, flag_name)
 
 
 def try_main():
