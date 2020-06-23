@@ -10,7 +10,7 @@ inputs:
     default: ${{ github.token }}
   flag-name:
     description: 'A descriptive id for this job. Specifically useful for matrix builds'
-    default:
+    default: None
   parallel:
     description: 'Set to true if you are using parallel jobs, then use `parallel-finished: true` for the last action.'
     default: false

@@ -138,11 +138,16 @@ def str_to_bool(value):
         return True
     raise ValueError(f"{value} is not a valid boolean value")
 
+def parse_str_flag_name(value):
+    if value == "None":
+        return None
+    else:
+        return value
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Greetings")
     parser.add_argument("--github-token", nargs=1, required=True)
-    parser.add_argument("--flag-name", default=None)
+    parser.add_argument("--flag-name", type=parse_str_flag_name, default=None)
     parser.add_argument(
         "--parallel", type=str_to_bool, nargs="?", const=True, default=False
     )
