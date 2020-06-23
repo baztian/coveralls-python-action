@@ -50,7 +50,7 @@ def run_coveralls(repo_token, parallel=False, flag_name=None):
             coverall_kwargs = dict()
             if flag_name:
                 log.info(f"Using flag_name: {flag_name}...")
-                coverall_kwargs['service_job_id'] = flag_name
+                coverall_kwargs['flag_name'] = flag_name
             coveralls = Coveralls(service_name=service_name, **coverall_kwargs)
             try:
                 result = coveralls.wear()
